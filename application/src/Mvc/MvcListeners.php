@@ -291,6 +291,16 @@ class MvcListeners extends AbstractListenerAggregate
             return;
         }
 
+        $services = $event->getApplication()->getServiceManager();
+        $identity = $services->get('Omeka\AuthenticationService')->getIdentity();
+        $navigation = $services->get('Laminas\Navigation\AdminGlobal');
+
+        // Set the current user ID to the "My settings" navigation link.
+        $navigation->findOneBy('id', 'my-settings')
+            ->set('params', ['id' => $identity->getId()])
+            ->setFragment('user-settings');
+
+        // Set the admin layout template.
         $event->getViewModel()->setTemplate('layout/layout-admin');
 
         if ($routeMatch->getParam('__SITEADMIN__')

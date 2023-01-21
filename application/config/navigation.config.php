@@ -178,13 +178,23 @@ return [
                 'privilege' => 'browse',
             ],
             [
-                'label' => 'Settings', // @translate
+                'label' => 'Global settings', // @translate
                 'class' => 'settings',
                 'route' => 'admin/default',
                 'controller' => 'setting',
                 'action' => 'browse',
                 'resource' => 'Omeka\Controller\Admin\Setting',
                 'privilege' => 'browse',
+            ],
+            [
+                'label' => 'My settings', // @translate
+                'id' => 'my-settings',
+                'class' => 'settings',
+                'route' => 'admin/id',
+                'controller' => 'user',
+                'action' => 'edit',
+                'resource' => 'Omeka\Controller\Admin\User',
+                'privilege' => 'edit',
             ],
             [
                 'label' => 'Assets', // @translate
